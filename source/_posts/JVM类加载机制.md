@@ -7,6 +7,7 @@ tags:
   - 深入理解Java虚拟机
 categories: Java虚拟机
 cover: http://image.hanelalo.cn/images/20220129152458.jpg
+description: 如何打破双亲委派机制？
 ---
 
 # JVM 类加载机制
@@ -90,5 +91,4 @@ JVM 中的类加载器分为:
 ## 双亲委派机制
 
 当一个类加载器加载一个类时，首先会尝试让父加载器加载该类，如果父加载器没找到，自己才会尝试加载目标类，也就是说，一般情况下，任何一个类的加载都会轮到 BootstrapClassLoader 尝试加载一次。如果最终还是没能加载到目标类，就会抛出 `ClassNotFoundException`。
-
 

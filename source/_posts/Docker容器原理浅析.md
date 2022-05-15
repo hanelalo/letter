@@ -4,6 +4,7 @@ date: 2022-03-24 12:34:20
 tags: Kubernetes
 categories: Kubernetes
 cover: http://image.hanelalo.cn/image/2022032412483123.jpg
+description: 在微服务盛行的时代，相对于虚拟机更轻量级的容器技术应运而生，其中 Docker 被广泛应用，虽然现在还有 Podman 等一些新兴的容器管理工具，但万变不离其宗，我们只需要知道容器到底是如何产生，如何运行的。
 ---
 # Docker 容器原理浅析
 

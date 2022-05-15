@@ -4,6 +4,7 @@ date: 2022-04-04 15:52:00
 tags: Java
 categories: 多线程技术
 cover: http://image.hanelalo.cn/image/20220401111755.jpg
+description: 发现我的博客竟没有专门将整个的文章，不得不当一次缝合怪，结合《Java并发编程的艺术》和网络大神的文章做总结。
 ---
 
 > 发现我的博客竟没有专门将整个的文章，不得不当一次缝合怪，结合《Java并发编程的艺术》和网络大神的文章做总结。

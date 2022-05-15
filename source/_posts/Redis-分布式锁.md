@@ -6,6 +6,7 @@ tags:
 	- Redis
 categories: Redis
 cover: http://image.hanelalo.cn/images/202111061352025.png
+description: 简单谈谈 Redis 实现分布式锁需要注意的点，然后结合 Redisson 的实现方式印证想法。
 ---
 
 在分布式应用场景下，总是会涉及到多个应用并发操作同一个业务数据得问题，在这种情况下，就会采用分布式锁来限制并发操作。

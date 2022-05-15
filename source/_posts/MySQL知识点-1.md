@@ -4,6 +4,7 @@ date: 2021-03-14 18:40:07
 tags: MySQL
 categories: 数据库
 cover: http://image.hanelalo.cn/images/202111061351625.png
+description: 主要还是解析索引原理及其特性。
 ---
 
 # MySQL 知识点梳理（一）

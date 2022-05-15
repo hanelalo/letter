@@ -4,6 +4,7 @@ date: 2022-03-28 21:23:36
 tags: Kubernetes
 categories: Kubernetes
 cover: http://image.hanelalo.cn/image/202203282124366.jpg
+description: 当认真了解 Pod 的概念后，才发现之前工作中一直都没分清 Pod 和容器的区别。
 ---
 
 # K8s Pod 浅析

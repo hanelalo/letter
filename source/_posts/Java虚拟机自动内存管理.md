@@ -7,6 +7,7 @@ tags:
     - 深入理解Java虚拟机
 categories: Java虚拟机
 cover: http://image.hanelalo.cn/images/202201182236555.jpg
+description: 浅析 JVM 运行时内存区域划分和垃圾收集器相关知识。
 ---
 
 > 本文是 《深入理解 Java 虚拟机》第 3 版的读书笔记。

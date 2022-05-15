@@ -4,9 +4,10 @@ date: 2021-10-24 10:03:42
 tags: Spring
 categories: Spring
 cover: http://image.hanelalo.cn/images/202110241726321.png
+description: 从源码角度剖析 Spring AOP 的实现。
 ---
 
-> 图来自 unsplash 
+> 题来自 unsplash 
 
 # Spring-AOP 原理
 
