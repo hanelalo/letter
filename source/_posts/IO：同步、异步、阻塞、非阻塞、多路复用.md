@@ -242,11 +242,11 @@ Reactor 的核心组件有 3 个：
 
 ## 参考资料
 
-    1. [Life Cycle of a Thread in Java](https://www.baeldung.com/java-thread-lifecycle)
-    2. [极客时间《Java 并发编程实战》专栏：《09 | Java线程（上）：Java线程的生命周期》](https://time.geekbang.org/column/article/86366)
-    3. [DMA和零拷贝](https://mp.weixin.qq.com/s/2_-ot3t9Yaws7bOqEhv78Q)，Hank
-    4. [三分钟短文快速了解信号驱动式IO，似乎没那么完美](https://www.itzhai.com/articles/it-seems-not-so-perfect-signal-driven-io.html)
-    5. [信号驱动I/O](https://static.kancloud.cn/luoyoub/network-programming/2234088)
-    6. [LINUX – IO MULTIPLEXING – SELECT VS POLL VS EPOLL](https://devarea.com/linux-io-multiplexing-select-vs-poll-vs-epoll/)
-    7. [彻底搞懂Reactor模型和Proactor模型](https://cloud.tencent.com/developer/article/1488120)
-    8. [如何深刻理解Reactor和Proactor？](https://www.zhihu.com/question/26943938/answer/1856426252)
+1. [Life Cycle of a Thread in Java](https://www.baeldung.com/java-thread-lifecycle)
+2. [极客时间《Java 并发编程实战》专栏：《09 | Java线程（上）：Java线程的生命周期》](https://time.geekbang.org/column/article/86366)
+3. [DMA和零拷贝](https://mp.weixin.qq.com/s/2_-ot3t9Yaws7bOqEhv78Q)，Hank
+4. [三分钟短文快速了解信号驱动式IO，似乎没那么完美](https://www.itzhai.com/articles/it-seems-not-so-perfect-signal-driven-io.html)
+5. [信号驱动I/O](https://static.kancloud.cn/luoyoub/network-programming/2234088)
+6. [LINUX – IO MULTIPLEXING – SELECT VS POLL VS EPOLL](https://devarea.com/linux-io-multiplexing-select-vs-poll-vs-epoll/)
+7. [彻底搞懂Reactor模型和Proactor模型](https://cloud.tencent.com/developer/article/1488120)
+8. [如何深刻理解Reactor和Proactor？](https://www.zhihu.com/question/26943938/answer/1856426252)
