@@ -6,9 +6,12 @@ tags:
   - 读书笔记
   - 深入理解Java虚拟机
 categories: Java虚拟机
-cover: http://image.hanelalo.cn/images/20220129152458.jpg
 description: 如何打破双亲委派机制？
 ---
+
+<img src='http://image.hanelalo.cn/images/20220129152458.jpg'/>
+
+<!--more-->
 
 # JVM 类加载机制
 

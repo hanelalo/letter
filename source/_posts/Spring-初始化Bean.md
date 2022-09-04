@@ -3,9 +3,12 @@ title: 'Spring: 初始化Bean'
 date: 2021-09-24 23:10:14
 tags: Spring
 categories: Spring
-cover: http://image.hanelalo.cn/images/202111061323558.png
 description: Spring 如何解决循环依赖的呢？
 ---
+
+<img src='http://image.hanelalo.cn/images/202111061323558.png'/>
+
+<!--more-->
 
 # Spring: 初始化 Bean
 

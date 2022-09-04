@@ -3,9 +3,12 @@ title: Spring数据库事务原理
 date: 2021-11-07 15:37:23
 tags: Spring
 categories: Spring
-cover: http://image.hanelalo.cn/images/202111071541201.jpg
 description: Spring 究竟如何实现事务？
 ---
+
+<img src='http://image.hanelalo.cn/images/202111071541201.jpg'/>
+
+<!--more-->
 
 # Spring数据库事务原理
 

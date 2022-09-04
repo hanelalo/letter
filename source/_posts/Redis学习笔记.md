@@ -3,9 +3,12 @@ title: Redis学习笔记（一）
 date: 2020-10-24 17:37:02
 tags: Redis
 categories: Redis
-cover: http://image.hanelalo.cn/images/202111061352634.png
 description: Redis 学习笔记第一弹，主要是持久化机制，还简单介绍了过期键淘汰机制，和简单的主从搭建。
 ---
+
+<img src='http://image.hanelalo.cn/images/202111061352634.png'/>
+
+<!--more-->
 
 # Redis 学习笔记（一）
 

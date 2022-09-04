@@ -3,9 +3,12 @@ title: 'Spring: BeanDefinition 的解析'
 date: 2021-08-25 23:08:32
 tags: Spring
 categories: Spring
-cover: http://image.hanelalo.cn/images/202111061316748.jpg
 description: Spring 如何通过一个配置文件就能创造一个软件的世界？
 ---
+
+<img src='http://image.hanelalo.cn/images/202111061316748.jpg'/>
+
+<!--more-->
 
 # Resource 接口
 

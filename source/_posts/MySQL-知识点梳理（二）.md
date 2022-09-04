@@ -2,9 +2,12 @@
 title: MySQL 知识点梳理（二）
 date: 2021-12-19 22:42:00
 tags: MySQL
-cover: http://image.hanelalo.cn/images/202112192246399.jpeg
 description: 日志系统、事务、锁。
 ---
+
+<img src='http://image.hanelalo.cn/images/202112192246399.jpeg'/>
+
+<!--more-->
 
 ## InnoDB Buffer Pool
 

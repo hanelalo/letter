@@ -3,9 +3,12 @@ title: Redis学习笔记（二）
 date: 2021-08-03 14:48:11
 tags: Redis
 categories: Redis
-cover: http://image.hanelalo.cn/images/202111061317524.jpg
 description: 介绍了 Redis 常用数据结构、持久化机制、主从同步机制、哨兵集群原理、切片集群原理。
 ---
+
+<img src='http://image.hanelalo.cn/images/202111061317524.jpg'/>
+
+<!--more-->
 
 # Redis 学习笔记（二）
 

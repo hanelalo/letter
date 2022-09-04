@@ -3,9 +3,12 @@ title: Java线程池-ThreadPoolExecutor原理
 date: 2021-03-12 22:05:36
 tags: Java
 categories: 多线程技术
-cover: http://image.hanelalo.cn/images/202111061349153.png
 description: 站在源码的角度看，ThreadPoolExecutor 到底是如何工作的呢？
 ---
+
+<img src='http://image.hanelalo.cn/images/202111061349153.png'/>
+
+<!--more-->
 
 # ThreadPoolExecutor 原理
 

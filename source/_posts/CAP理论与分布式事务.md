@@ -3,9 +3,12 @@ title: CAP理论与分布式事务
 date: 2022-03-15 22:17:20
 tags: 分布式
 categories: 分布式
-cover: http://image.hanelalo.cn/image/202203152219479.jpg
 description: 关于 CAP、BASE 理论和分布式事务相关的一些总结。
 ---
+
+<img src='http://image.hanelalo.cn/image/202203152219479.jpg'/>
+
+<!--more-->
 
 > 最近做一些 interview 遇到了一些问题，有时间慢慢总结，慢慢学习。
 

@@ -2,9 +2,12 @@
 title: IO：同步、异步、阻塞、非阻塞、多路复用
 date: 2022-06-12 23:04:00
 tags: IO
-cover: http://image.hanelalo.cn/image/202206121200343.png
 description: 看了很多关于同步、异步 IO 的文章，但总是似懂非懂，闲来无事，查阅各方资料，总算是明白了一些。
 ---
+
+<img src='http://image.hanelalo.cn/image/202206121200343.png'/>
+
+<!--more-->
 
 ## 从线程状态说起
 

@@ -1,12 +1,15 @@
 ---
 title: SPI 在 Java 中的应用
-date: 2022-08-14 18:36:00
+date: 2021-08-14 18:36:00
 tags: 
     - Java
 categories: Java
-cover: http://image.hanelalo.cn/image/202208141841577.png
-description: 
+description: SPI 技术在 Java 的世界中应用广泛，本文对 SPI 的原理进行探究。
 ---
+
+<img src='http://image.hanelalo.cn/image/202208141841577.png'/>
+
+<!--more-->
 
 # SPI 在 Java 中的应用
 

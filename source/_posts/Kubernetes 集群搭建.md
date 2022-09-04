@@ -3,9 +3,12 @@ title: Kubernetes 集群搭建
 date: 2022-03-26 21:17:20
 tags: Kubernetes
 categories: Kubernetes
-cover: http://image.hanelalo.cn/image/202203262057512.png
 description: 主要是通过 kubeadm 安装，kubeadm 将 k8s 的大部分组件直接以容器的形式进行安装。
 ---
+
+<img src='http://image.hanelalo.cn/image/202203262057512.png'/>
+
+<!--more-->
 
 主要是通过 kubeadm 安装，kubeadm 将 k8s 的大部分组件直接以容器的形式进行安装。 
 
