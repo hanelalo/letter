@@ -28,7 +28,6 @@ jobs:
         # npm install hexo-filter-github-emojis  -g
         # npm install hexo-generator-feed  -g
         npm install
-        npm install hexo-butterfly-extjs@1.1.9
 
     - name: 4. hexo generate public files...
 
