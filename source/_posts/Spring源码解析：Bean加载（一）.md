@@ -1,5 +1,5 @@
 ---
-title: Spring源码解析：Bean初始化（一）
+title: Spring源码解析：Bean加载（一）
 date: 2022-11-26 15:18:44
 tags: Spring源码解析
 categories: Spring
@@ -237,7 +237,7 @@ description: doGetBean 方法主流程梳理。
 9. 创建 bean 实例，这里分了 singlton、prototype、自定义 scope 3 种情况，具体的差别单独写博文讲解，但是都调用了 `#creatBean()` 来创建 bean 实例。
 10. 返回 bean 类型适配。
 
-因为这 10 不，有些比较简单，有些很复杂，所以本文对每一步做一个或浅或深的解析，复杂的步骤会单独再出一篇文章进行解析。
+因为这 10 步，有些比较简单，有些很复杂，所以本文对每一步做一个或浅或深的解析，复杂的步骤会单独再出一篇文章进行解析。
 
 ## beanName 处理
 
