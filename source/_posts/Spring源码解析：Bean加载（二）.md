@@ -8,7 +8,7 @@ description: createBean() 方法主流程梳理。
 
 ## Spring 对 Scope 扩展的支持 
 
-在[Spring源码解析：Bean加载（一）](/posts/9e6d785ab2c8)中，讲到了 `#doGetBean()` 方法中的 10 步，其中不同 Scope 创建 bean 的逻辑未深入解释，同时，也提到它们的区别主要在于 bean 实例的生命周期，但是创建 bean 都是调用的 `#createBean()` 方法。
+在[Spring源码解析：Bean加载（一）](/posts/dfcbfd4aee6c)中，讲到了 `#doGetBean()` 方法中的 10 步，其中不同 Scope 创建 bean 的逻辑未深入解释，同时，也提到它们的区别主要在于 bean 实例的生命周期，但是创建 bean 都是调用的 `#createBean()` 方法。
 
 ```java
 				if (mbd.isSingleton()) {
