@@ -382,7 +382,7 @@ doCreateBean() 方法主要做 bean 实例化、属性填充、初始化，同�
 	}
 ```
 
-`#doCreateBean()` 方法分以下 7 步：
+`#doCreateBean()` 方法分以下 6 步：
 
 1. 实例化 bean 对象，这里实例化，其实就是使用构造函数构建一个对象，但是构建出来的对象的各个属性可能是 null。这取决于 bean 的注入方式，这一步会讲通过构造函数注入的依赖先完成，对于使用 set 方法注入和直接使用 @Autowired 注解注入的，则是后续填充属性时注入。
 2. 执行 mergeBeanDefinitionPostProcessor，一些前置处理，`@Autowired` 注解的解析就在这里。
