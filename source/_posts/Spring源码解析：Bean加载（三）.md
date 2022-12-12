@@ -428,7 +428,7 @@ Supplier 接口只有一个 `#get()` 接口，也没有入参。
 1. 获取 FactoryBeanName，如果 FactoryBeanName 不为空，说明创建 bean 的工厂也是一个 Spring 托管的 bean，否则就只能是一个静态工厂，且必须提供全类名。
 2. 获取工厂方法。
    1. 首先同样是对重复创建 bean 的优化，从缓存中取。
-   2. 参数类型转换。这里需要注意方法参数 `explicitArgs`，从 bean 创建流程上看，该参数是从最开始调用 `#getBean()` 方法时传的，则该参数必定为 null，此时还需要做参数解析，对于 `argToUse` 变量。`#resolvePreparedArguments()` 方法用于类型转换，具体的可能是将配置文件中的字面值转换成 Integer、Long 等类似的工作。
+   2. 参数类型转换。这里需要注意方法参数 `explicitArgs`，从 bean 创建流程上看，该参数是从最开始调用 `#getBean()` 方法时传的，则该参数必定为 null，此时还需要做参数解析，对于 `argToUse` 变量。`#resolvePreparedArguments()` 方法用于类型转换，具体的可能是将配置文件中的字面值转换成 Integer、Long 等类似的工作，更重要的是这里创建了构造函数所依赖的 bean。
    3. 和 factoryBeanName 同名的方法可能会有多个，通过参数个数、参数类型偏差等，决定使用哪个工厂方法进行 bean 创建。
 3. 创建 bean 实例，这里是调用 `#instantiate()` 方法。
 
@@ -477,6 +477,220 @@ SimpleInstantiationStrategy  ..>  InstantiationStrategy
 
 而方案里面其实就是通过反射调用 FactoryMethod 得到 bean 实例了。
 
+## 构造函数创建 bean
+
+`#autowirdConstruct()` 方法和工厂方法创建 bean 有些类似，甚至依然是委托给了 ConstructorResolver 类处理，只不过这里是委托给了 `ConstructorResolver#autowireConstructor()` 方法。
+
+> 看到这里真的想骂人了，跟工厂方法那一块逻辑差不多，甚至一个方法里的代码都特别的长。
+
+```java
+	public BeanWrapper autowireConstructor(String beanName, RootBeanDefinition mbd,
+			@Nullable Constructor<?>[] chosenCtors, @Nullable Object[] explicitArgs) {
+
+		BeanWrapperImpl bw = new BeanWrapperImpl();
+		this.beanFactory.initBeanWrapper(bw);
+
+		Constructor<?> constructorToUse = null;
+		ArgumentsHolder argsHolderToUse = null;
+		// 使用的参数
+		Object[] argsToUse = null;
+
+		// 创建 bean 时调用 getBean() 传入的 explicitArgs 一般都是 null
+		if (explicitArgs != null) {
+			argsToUse = explicitArgs;
+		}
+		else {
+			// 这里是对有些 scope 存在重复创建 bean 的场景的优化
+			Object[] argsToResolve = null;
+			synchronized (mbd.constructorArgumentLock) {
+				constructorToUse = (Constructor<?>) mbd.resolvedConstructorOrFactoryMethod;
+				// 如果构造函数的解析已经完成
+				if (constructorToUse != null && mbd.constructorArgumentsResolved) {
+					// Found a cached constructor...
+					argsToUse = mbd.resolvedConstructorArguments;
+					if (argsToUse == null) {
+						argsToResolve = mbd.preparedConstructorArguments;
+					}
+				}
+			}
+			if (argsToResolve != null) {
+				// 参数类型转换，到这里主要是做类型转换，比如参数是 int 类型，那么在这里需要将 “1” 转换成 1
+				argsToUse = resolvePreparedArguments(beanName, mbd, bw, constructorToUse, argsToResolve);
+			}
+		}
+
+		/**
+		 * 以上代码说明在解析构造函数参数时，resolvedConstructorArguments 是经过了类型转换之后的，
+		 * preparedConstructorArguments 肯能还没有做类型转换，个人认为其实主要集中在基本类型的相互转换上
+		 */
+
+		/**
+		 * 从逻辑上看，这里可用的构造函数引用和可用的构造函数参数列表是 null 的情况，说明其实还没有解析，
+		 * 即：该bean还是第一次创建
+		 */
+
+		if (constructorToUse == null || argsToUse == null) {
+			// Take specified constructors, if any.
+			Constructor<?>[] candidates = chosenCtors;
+			// 一般都是 null
+			if (candidates == null) {
+				Class<?> beanClass = mbd.getBeanClass();
+				try {
+					// 如果允许访问非 public 的方法，就返回所有的构造函数，不然就只取 public 的构造函数
+					candidates = (mbd.isNonPublicAccessAllowed() ?
+							beanClass.getDeclaredConstructors() : beanClass.getConstructors());
+				}
+				catch (Throwable ex) {
+					throw new BeanCreationException(mbd.getResourceDescription(), beanName,
+							"Resolution of declared constructors on bean Class [" + beanClass.getName() +
+							"] from ClassLoader [" + beanClass.getClassLoader() + "] failed", ex);
+				}
+			}
+
+			// 只有一个构造函数，且传入的构造函数参数列表为 null，且 BeanDefinition 解析时就确定没有构造函数参数
+			if (candidates.length == 1 && explicitArgs == null && !mbd.hasConstructorArgumentValues()) {
+				Constructor<?> uniqueCandidate = candidates[0];
+				// 如果唯一的构造函数的参数列表长度也为 0，那就可以开始初始化实例了
+				if (uniqueCandidate.getParameterCount() == 0) {
+					synchronized (mbd.constructorArgumentLock) {
+						mbd.resolvedConstructorOrFactoryMethod = uniqueCandidate;
+						mbd.constructorArgumentsResolved = true;
+						mbd.resolvedConstructorArguments = EMPTY_ARGS;
+					}
+					// 调用 instantiate() 方法构建实例, 因为前置判断决定了这里的构造方法是没有参数的，所以这里其实就是一个无参构造方法
+					bw.setBeanInstance(instantiate(beanName, mbd, uniqueCandidate, EMPTY_ARGS));
+					return bw;
+				}
+			}
+
+			/**
+			 * 到这里可以确定，对于这个 bean 初始化所需要的构造函数或者工厂方法、构造函数参数值的解析工作还没有进行
+			 * 所以，接下来需要进行解析
+			 */
+
+			// 是否需要解决构造器注入
+			boolean autowiring = (chosenCtors != null ||
+					mbd.getResolvedAutowireMode() == AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR);
+			ConstructorArgumentValues resolvedValues = null;
+			// 确定参数列表长度
+			int minNrOfArgs;
+			if (explicitArgs != null) {
+				minNrOfArgs = explicitArgs.length;
+			}
+			else {
+				// 从 BeanDefinition 中获取参数列表
+				ConstructorArgumentValues cargs = mbd.getConstructorArgumentValues();
+				resolvedValues = new ConstructorArgumentValues();
+				// 在这里就会解决初始化以依赖的 bean，需要注意的是，这里是使用有参构造初始化 bean，
+				// 这就导致 如果 A 和 B 有相互的构造器注入，A 还没有初始化，正在寻找并初始化构造器参数时，会初始化 B，
+				// 而 B 又会尝试初始化 A, 但是从前序逻辑上看，此时 A 已经被标记为创建中，所有就会报循环依赖的异常
+				minNrOfArgs = resolveConstructorArguments(beanName, mbd, bw, cargs, resolvedValues);
+			}
+			// 构造函数排序，先是 public 方法然后是非 public 的方法，同样的修饰符的方法，又以参数列表长度降序排序
+			AutowireUtils.sortConstructors(candidates);
+			int minTypeDiffWeight = Integer.MAX_VALUE;
+			Set<Constructor<?>> ambiguousConstructors = null;
+			Deque<UnsatisfiedDependencyException> causes = null;
+
+			for (Constructor<?> candidate : candidates) {
+				int parameterCount = candidate.getParameterCount();
+
+				if (constructorToUse != null && argsToUse != null && argsToUse.length > parameterCount) {
+					// Already found greedy constructor that can be satisfied ->
+					// do not look any further, there are only less greedy constructors left.
+					break;
+				}
+				// 对于参数列表长度比 BeanDefinition 中定义的参数列表长度还小的，直接跳过
+				if (parameterCount < minNrOfArgs) {
+					continue;
+				}
+
+				ArgumentsHolder argsHolder;
+				Class<?>[] paramTypes = candidate.getParameterTypes();
+				if (resolvedValues != null) {
+					try {
+						// 获取参数名称数组
+						String[] paramNames = getParamNames(candidate, parameterCount);
+						// 获取参数列表的 Holder
+						argsHolder = createArgumentArray(beanName, mbd, resolvedValues, bw, paramTypes, paramNames,
+								getUserDeclaredConstructor(candidate), autowiring, candidates.length == 1);
+					}
+					catch (UnsatisfiedDependencyException ex) {
+						if (logger.isTraceEnabled()) {
+							logger.trace("Ignoring constructor [" + candidate + "] of bean '" + beanName + "': " + ex);
+						}
+						// Swallow and try next constructor.
+						if (causes == null) {
+							causes = new ArrayDeque<>(1);
+						}
+						causes.add(ex);
+						continue;
+					}
+				}
+				else {
+					// 从前面的逻辑看，到这里 explicitArgs 肯定不为 null, 如果长度不一致，直接忽略
+					// Explicit arguments given -> arguments length must match exactly.
+					if (parameterCount != explicitArgs.length) {
+						continue;
+					}
+					// 直接使用 explicitArgs 作为参数
+					argsHolder = new ArgumentsHolder(explicitArgs);
+				}
+
+				int typeDiffWeight = (mbd.isLenientConstructorResolution() ?
+						argsHolder.getTypeDifferenceWeight(paramTypes) : argsHolder.getAssignabilityWeight(paramTypes));
+				// Choose this constructor if it represents the closest match.
+				if (typeDiffWeight < minTypeDiffWeight) {
+					constructorToUse = candidate;
+					argsHolderToUse = argsHolder;
+					argsToUse = argsHolder.arguments;
+					minTypeDiffWeight = typeDiffWeight;
+					ambiguousConstructors = null;
+				}
+				else if (constructorToUse != null && typeDiffWeight == minTypeDiffWeight) {
+					if (ambiguousConstructors == null) {
+						ambiguousConstructors = new LinkedHashSet<>();
+						ambiguousConstructors.add(constructorToUse);
+					}
+					ambiguousConstructors.add(candidate);
+				}
+			}
+
+			// 构造函数解析结束，如果此时可用的构造函数依然是 null ，那就没法初始化了，只能报错
+			if (constructorToUse == null) {
+				if (causes != null) {
+					UnsatisfiedDependencyException ex = causes.removeLast();
+					for (Exception cause : causes) {
+						this.beanFactory.onSuppressedException(cause);
+					}
+					throw ex;
+				}
+				throw new BeanCreationException(mbd.getResourceDescription(), beanName,
+						"Could not resolve matching constructor " +
+						"(hint: specify index/type/name arguments for simple parameters to avoid type ambiguities)");
+			}
+			// 匹配上的构造函数有多个，而且不允许模糊匹配，那也只能报错
+			else if (ambiguousConstructors != null && !mbd.isLenientConstructorResolution()) {
+				throw new BeanCreationException(mbd.getResourceDescription(), beanName,
+						"Ambiguous constructor matches found in bean '" + beanName + "' " +
+						"(hint: specify index/type/name arguments for simple parameters to avoid type ambiguities): " +
+						ambiguousConstructors);
+			}
+
+			if (explicitArgs == null && argsHolderToUse != null) {
+				argsHolderToUse.storeCache(mbd, constructorToUse);
+			}
+		}
+
+		Assert.state(argsToUse != null, "Unresolved constructor arguments");
+		// 终于找到了构造函数和参数，初始化对象
+		bw.setBeanInstance(instantiate(beanName, mbd, constructorToUse, argsToUse));
+		return bw;
+	}
+```
+
+这里不赘述，因为多个方法的情况下的选择、重复创建 bean 的处理方式和工厂方法创建 bean 基本是一样的思路。
+
 ## 总结
 
 * 创建 bean 的方式有多种，但是从上述逻辑看，不同的方式存在优先级关系：
@@ -490,4 +704,4 @@ SimpleInstantiationStrategy  ..>  InstantiationStrategy
   * autowireConstructor 能够进行构造器注入的操作。
   * instantiateBean 方法则是使用无参构造进行创建。
 
-本文只讲到了使用 Supplier、工厂方法进行创建，其余的方式将在后后续博文中继续讲解没，篇幅太长了也不好。
+* 最后一点很重要，因为涉及到循环依赖的细节。当使用构造函数进行注入时，在创建 bean A 的实例之前，就已经在创建所依赖的 bean B 的实例了，在此之后，内存中才出现了 bean A 实例，任何其他 bean 想要依赖 A，那至少也得内存中有 A。
