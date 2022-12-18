@@ -6,7 +6,7 @@ categories: 多线程技术
 description: 站在源码的角度看，ThreadPoolExecutor 到底是如何工作的呢？
 ---
 
-<img src='http://image.hanelalo.cn/images/202111061349153.png'/>
+<img src='https://image.hanelalo.cn/images/202111061349153.png'/>
 
 <!--more-->
 

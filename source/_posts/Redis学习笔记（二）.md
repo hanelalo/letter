@@ -6,7 +6,7 @@ categories: Redis
 description: 介绍了 Redis 常用数据结构、持久化机制、主从同步机制、哨兵集群原理、切片集群原理。
 ---
 
-<img src='http://image.hanelalo.cn/images/202111061317524.jpg'/>
+<img src='https://image.hanelalo.cn/images/202111061317524.jpg'/>
 
 <!--more-->
 

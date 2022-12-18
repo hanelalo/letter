@@ -6,7 +6,7 @@ categories: 多线程技术
 description: 虽然 Java 提供了手动创建线程的操作方式，但是实际生产环境中，肯定不会允许无限创建线程，因为服务器会炸，所以 JDK 提供了 Exexutor 框架用来管理线程。
 ---
 
-<img src='http://image.hanelalo.cn/images/202111061348509.png'/>
+<img src='https://image.hanelalo.cn/images/202111061348509.png'/>
 
 <!--more-->
 

@@ -9,7 +9,7 @@ categories: Java虚拟机
 description: 如何打破双亲委派机制？
 ---
 
-<img src='http://image.hanelalo.cn/images/20220129152458.jpg'/>
+<img src='https://image.hanelalo.cn/images/20220129152458.jpg'/>
 
 <!--more-->
 

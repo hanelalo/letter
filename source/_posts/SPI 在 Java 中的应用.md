@@ -7,7 +7,7 @@ categories: Java
 description: SPI 技术在 Java 的世界中应用广泛，本文对 SPI 的原理进行探究。
 ---
 
-<img src='http://image.hanelalo.cn/image/202208141841577.png'/>
+<img src='https://image.hanelalo.cn/image/202208141841577.png'/>
 
 <!--more-->
 
@@ -254,7 +254,6 @@ org.hanelalo.spi.DogServiceImpl
 上一节有提到，更多时候是在众多实现类中找一个，而找的方式只能是遍历，最终会出现只使用其中一个实现类，但却初始化所有实现类的情况，这是一种资源的浪费。
 
 像 Dubbo 针对 SPI 进行了更灵活的优化，能够按需加载，为每个实现类定义一个名称，使用时，可以直接通过名称先找到实现类名，再进行初始化，而不是每个实现了都初始化之后再判断是否是需要的实现类，具体的可翻阅 dubbo 项目 org.apache.dubbo.common.extension 包下面的源码。
-
 
 
 

@@ -9,7 +9,7 @@ categories: Java虚拟机
 description: 浅析 JVM 运行时内存区域划分和垃圾收集器相关知识。
 ---
 
-<img src='http://image.hanelalo.cn/images/202201182236555.jpg'/>
+<img src='https://image.hanelalo.cn/images/202201182236555.jpg'/>
 
 <!--more-->
 

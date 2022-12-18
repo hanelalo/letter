@@ -6,7 +6,7 @@ categories: 计算机网络
 description: 是否想过 RSA 为什么被公认的安全？CA 机构是什么？TLS、SSL 又是什么？
 ---
 
-<img src='http://image.hanelalo.cn/image/202209032234002.jpg'/>
+<img src='https://image.hanelalo.cn/image/202209032234002.jpg'/>
 
 <!--more-->
 

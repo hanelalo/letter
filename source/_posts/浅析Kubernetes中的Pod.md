@@ -6,7 +6,7 @@ categories: Kubernetes
 description: 当认真了解 Pod 的概念后，才发现之前工作中一直都没分清 Pod 和容器的区别。
 ---
 
-<img src='http://image.hanelalo.cn/image/202203282124366.jpg'>
+<img src='https://image.hanelalo.cn/image/202203282124366.jpg'>
 
 <!--more-->
 

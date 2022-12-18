@@ -6,7 +6,7 @@ categories: Go
 description: 我是一个 Java 开发者，所以本文大多是与 Java 的语法对比，方便作为一个 Java 开发者的自己理解，所以有些和 Java 类似的语法，只会写一个例子，不会再做解释。
 ---
 
-<img src='http://image.hanelalo.cn/images/202201032000947.png'/>
+<img src='https://image.hanelalo.cn/images/202201032000947.png'/>
 
 <!--more-->
 

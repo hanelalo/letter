@@ -6,7 +6,7 @@ categories: 分布式
 description: 关于 CAP、BASE 理论和分布式事务相关的一些总结。
 ---
 
-<img src='http://image.hanelalo.cn/image/202203152219479.jpg'/>
+<img src='https://image.hanelalo.cn/image/202203152219479.jpg'/>
 
 <!--more-->
 

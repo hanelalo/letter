@@ -5,7 +5,7 @@ tags: IO
 description: 看了很多关于同步、异步 IO 的文章，但总是似懂非懂，闲来无事，查阅各方资料，总算是明白了一些。
 ---
 
-<img src='http://image.hanelalo.cn/image/202206121200343.png'/>
+<img src='https://image.hanelalo.cn/image/202206121200343.png'/>
 
 <!--more-->
 

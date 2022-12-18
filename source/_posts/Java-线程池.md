@@ -6,7 +6,7 @@ categories: 多线程技术
 description: 结合实际的代码剖析线程池的工作机制。
 ---
 
-<img src='http://image.hanelalo.cn/images/202111061349789.png'/>
+<img src='https://image.hanelalo.cn/images/202111061349789.png'/>
 
 <!--more-->
 

@@ -6,7 +6,7 @@ categories: Kubernetes
 description: 主要是通过 kubeadm 安装，kubeadm 将 k8s 的大部分组件直接以容器的形式进行安装。
 ---
 
-<img src='http://image.hanelalo.cn/image/202203262057512.png'/>
+<img src='https://image.hanelalo.cn/image/202203262057512.png'/>
 
 <!--more-->
 

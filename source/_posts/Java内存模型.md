@@ -6,7 +6,7 @@ categories: 多线程技术
 description: 发现我的博客竟没有专门将整个的文章，不得不当一次缝合怪，结合《Java并发编程的艺术》和网络大神的文章做总结。
 ---
 
-<img src='http://image.hanelalo.cn/image/20220401111755.jpg'/>
+<img src='https://image.hanelalo.cn/image/20220401111755.jpg'/>
 
 <!--more-->
 
