@@ -197,3 +197,7 @@ fn main() {
 The first item in arr is:1
 The second item in arr is:3
 ```
+
+## 参考文档
+
+* [The Rust Programming Language](https://doc.rust-lang.org/book/ch03-02-data-types.html)
