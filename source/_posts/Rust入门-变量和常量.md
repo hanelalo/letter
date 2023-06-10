@@ -92,7 +92,7 @@ src 是源代码目录，Cargo.toml 是项目的配置文件，其中包括项�
 ```toml
 # Cargo.toml
 [package]
-name = "hello_cargo"
+name = "hello_world"
 version = "0.1.0"
 edition = "2021"
 
