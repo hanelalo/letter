@@ -81,7 +81,7 @@ $ cargo new hello_world
 然后进入项目会发现有以下目录结构：
 
 ```
-hello_world
+hello_world\
 	src\
 		main.rs
 	Cargo.toml
