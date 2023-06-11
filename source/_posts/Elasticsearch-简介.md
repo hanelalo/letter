@@ -5,6 +5,7 @@ tags:
   - Elasticsearch
   - 中间件
 categories: Elasticsearch
+description: 本文简单介绍了 es 中的一些概念。
 ---
 
 # Elasticsearch 简介
