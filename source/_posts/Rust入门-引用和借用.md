@@ -1,6 +1,6 @@
 ---
 title: Rust入门:引用和借用
-date: 2023-06-17 21:43:18
+date: 2023-06-17 21:43:17
 tags: Rust
 categories: 文档翻译
 description: 本文将介绍 rust 中引用和借用的概念。同样本文依然是官方文档的中文翻译。
