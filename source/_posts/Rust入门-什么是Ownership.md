@@ -1,5 +1,5 @@
 ---
-title: 理解Ownership:什么是Ownership?
+title: Rust入门:什么是Ownership?
 date: 2023-06-14 22:43:57
 tags: Rust
 categories: 文档翻译

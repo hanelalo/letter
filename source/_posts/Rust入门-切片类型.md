@@ -1,5 +1,5 @@
 ---
-title: 切片类型
+title: Rust入门:切片类型
 date: 2023-06-17 21:45:15
 tags: Rust
 categories: 文档翻译
