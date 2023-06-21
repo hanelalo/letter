@@ -119,4 +119,4 @@ For more information about this error, try `rustc --explain E0308`.
 
 ## 参考文档
 
-* [The Rust Progrmming Language](https://doc.rust-lang.org/book/ch03-03-how-functions-work.html)
+* [The Rust Programming Language](https://doc.rust-lang.org/book/ch03-03-how-functions-work.html)
