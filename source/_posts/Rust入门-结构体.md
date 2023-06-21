@@ -255,3 +255,6 @@ impl Rectangle {
 }
 ```
 
+## 参考文档
+
+* [The Rust Programming Language](https://doc.rust-lang.org/book/ch05-03-method-syntax.html)
