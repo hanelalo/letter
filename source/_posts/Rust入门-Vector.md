@@ -100,3 +100,12 @@ ptr 指向堆上内存，意味着 Vector 中的元素是存在堆上的，尽�
 官方文档也提到，只有当 `capacity * mem::size_if::<T>() > 0` 时才会在堆上分配内存。
 
 在前面提到了在 Vector 中有 len 和 cap 两个属性，这两个是不一定相等的，始终会保证 `cap >= len`，而扩容的条件就是 push 时发现 `cap == len`，扩容后，capacity 等于第一个比原来的 capacity 大的 2 的 n 次幂，比如原来 capacity 是 5，那么扩容后变成了 8。 
+
+因为 Vector 本身是要分配一块连续的内存，所以扩容时，还需要移动现有的元素到新的内存地址，这就以为者，当 vector 有一个引用还存在于当前上下文时，如果调用了 push 这种可能会引发扩容操作的方法，会导致编译失败，不然的话，可能会导致之前的引用指向的内存地址的数据无效。
+
+更进一步，向 Vector 中不断 push 元素会引发扩容，但是如果将一个很大的 Vector 中的元素一个一个删除，并不会自动缩小容量来释放内存。
+
+## 参考文档
+
+* https://doc.rust-lang.org/book/ch08-01-vectors.html
+* https://doc.rust-lang.org/std/vec/struct.Vec.html
